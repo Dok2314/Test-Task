@@ -34,3 +34,27 @@
      
 ## Заключение
 Если курьеров будет 15, для каждого курьера создается отдельный класс, в папке `app/services`, со своей реализацией метода `prepareRequestData`.
+Также для улучшения расширяемости и поддержания чистоты кода рассматривается возможность внедрения фабрики. Что-то вроде:
+
+Для выделения PHP-кода в файле Markdown на GitHub, вы можете использовать три обратных кавычки (```) перед и после кодового блока. Вы также можете указать язык программирования после тройных обратных кавычек для правильного подсветки синтаксиса. Вот пример:
+
+```php
+class DeliveryServiceFactory
+{
+    public static function create(string $courier): DeliveryService
+    {
+        switch ($courier) {
+            case 'nova_poshta':
+                return new NovaPoshtaService();
+            case 'ukr_poshta':
+                return new UkrPoshtaService();
+                // Добавляем обработку других курьеров по мере необходимости
+                // case 'courier_3':
+                // return new Courier3Service();
+                // ...
+        default:
+            throw new \InvalidArgumentException('Unknown courier: ' . $courier);
+        }
+    }
+}
+```
