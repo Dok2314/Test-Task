@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'sender_address' => 'Street, City, Country',
+    'selected_courier' => 'nova_poshta', // Here you can change a courier
 ];
