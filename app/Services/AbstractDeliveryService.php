@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
 
 abstract class AbstractDeliveryService implements DeliveryService
@@ -28,6 +29,9 @@ abstract class AbstractDeliveryService implements DeliveryService
         }
     }
 
+    /**
+     * @throws GuzzleException
+     */
     protected function sendRequest($url, $data)
     {
         $client = new Client;
